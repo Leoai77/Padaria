@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { MapPin, Clock, Phone, Instagram, ChevronRight, Coffee, Croissant, Cake, Utensils, Star } from 'lucide-react';
-import { motion } from 'motion/react';
 
 const MENU_CATEGORIES = [
   { id: 'paes', name: 'Pães Fresquinhos', icon: Croissant },
@@ -104,11 +103,7 @@ export default function App() {
         </div>
         
         <div className="max-w-6xl mx-auto px-6 relative z-10 w-full grid md:grid-cols-2 gap-12 items-center py-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <div className="animate-fade-in-up">
             <p className="text-bakery-accent font-semibold tracking-widest uppercase text-sm mb-4">Tradição & Qualidade</p>
             <h2 className="text-5xl md:text-7xl font-serif leading-[1.1] mb-6">
               Pães e Doces <br/>
@@ -125,14 +120,9 @@ export default function App() {
                 Como Chegar
               </a>
             </div>
-          </motion.div>
+          </div>
           
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="hidden md:block relative"
-          >
+          <div className="hidden md:block relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <div className="aspect-[3/4] rounded-[2rem] overflow-hidden border-8 border-white shadow-2xl rotate-3">
               <img 
                 src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&q=80&w=800" 
@@ -145,7 +135,7 @@ export default function App() {
               <p className="font-serif text-2xl text-bakery-accent mb-1">Desde 1998</p>
               <p className="text-sm text-bakery-ink/70">Fazendo parte da sua família todos os dias.</p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -182,12 +172,10 @@ export default function App() {
           {/* Menu Items Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {MENU_ITEMS[activeCategory as keyof typeof MENU_ITEMS].map((item, index) => (
-              <motion.div 
+              <div 
                 key={item.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group cursor-pointer"
+                className="group cursor-pointer animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-bakery-bg">
                   <img 
@@ -204,7 +192,7 @@ export default function App() {
                   </div>
                   <span className="font-medium text-bakery-accent whitespace-nowrap">{item.price}</span>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -220,13 +208,10 @@ export default function App() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {REVIEWS.map((review, index) => (
-              <motion.div 
+              <div 
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white p-8 rounded-3xl shadow-sm border border-bakery-ink/5 flex flex-col h-full"
+                className="bg-white p-8 rounded-3xl shadow-sm border border-bakery-ink/5 flex flex-col h-full animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex gap-1 mb-4">
                   {[...Array(review.rating)].map((_, i) => (
@@ -238,7 +223,7 @@ export default function App() {
                   <p className="font-bold text-bakery-ink">{review.author}</p>
                   <p className="text-sm text-bakery-ink/50">{review.date}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
